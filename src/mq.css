@@ -1,0 +1,27 @@
+/* Media Queries */
+@media (max-width: 768px) {
+    .navbar ul {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar li {
+      margin: 10px 0;
+    }
+  
+    .video .header-div {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .video .Hello-Buddy,
+    .video .motivation {
+      max-width: 100%;
+    }
+  
+    .notes .playlist,
+    .video .playlist {
+      grid-template-columns: 1fr;
+    }
+  }
+  
