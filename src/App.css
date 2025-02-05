@@ -1,17 +1,7 @@
-/* General Styles */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: white;
-  color: black;
-}
-
+/* App.css */
 .App {
   display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
-.main-content {
-  margin-left: 200px; /* Adjusts the content to avoid navbar overlap */
-  padding: 20px;
-  flex-grow: 1;
-}
