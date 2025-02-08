@@ -166,7 +166,7 @@ const LandingPage = () => {
         >
           <Link 
             to="/dashboard" 
-            className="bg-[#5570F1] px-8 md:px-10 py-3 md:py-4 rounded-lg text-lg md:text-2xl font-semibold text-white shadow-lg hover:bg-[#4059C7] transition-all"
+            className="bg-[#5570F1] px-8 md:px-10 py-3 md:py-4 md:mt-10 rounded-lg text-lg md:text-2xl font-semibold text-white shadow-lg hover:bg-[#4059C7] transition-all"
           >
             Get Started
           </Link>
@@ -258,7 +258,7 @@ const LandingPage = () => {
                 <a href="mailto:support@edforma.com" className="text-gray-400 hover:text-[#5570F1] transition-all">
                   <Mail size={24} />
                 </a>
-                <a href="https://github.com/edforma" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#5570F1] transition-all">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#5570F1] transition-all">
                   <Github size={24} />
                 </a>
                 <a href="https://linkedin.com/company/edforma" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#5570F1] transition-all">
