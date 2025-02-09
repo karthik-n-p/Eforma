@@ -28,8 +28,8 @@ const LandingPage = () => {
   }, []);
 
   const features = [
-    { icon: <FileText size={40} className="text-primary" />, title: "Structured Notes", desc: "Well-organized documentation with easy accessibility." },
-    { icon: <Video size={40} className="text-primary" />, title: "Exam-Focused Teaching", desc: "High-probability questions and targeted explanations." },
+    { icon: <FileText size={40} className="text-primary" />, title: "No More Pdf's", desc: "Well-organized documentation with easy accessibility." },
+    { icon: <Video size={40} className="text-primary" />, title: "Learn What you need", desc: "High-probability questions and targeted explanations." },
     { icon: <Book size={40} className="text-primary" />, title: "KTU Syllabus Coverage", desc: "Comprehensive materials based on the latest syllabus." },
     { icon: <Users size={40} className="text-primary" />, title: "Interactive Learning", desc: "AI-powered Q&A for personalized guidance." },
   ];
@@ -172,11 +172,17 @@ const LandingPage = () => {
 
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center min-h-screen text-center px-6 relative space-y-8 md:space-y-8">
-        <div className="absolute inset-0 overflow-hidden z-0">
-          <div className="absolute w-[70vw] h-[20vw] max-w-[500px] max-h-[500px] rounded-full bg-[#5570F1] opacity-30 blur-[120px] top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"></div>
-          <div className="hidden md:block absolute w-[400px] h-[400px] rounded-full border-[60px] border-[#5570F1] opacity-65 blur-3xl top-[210px] -left-[200px]"></div>
-          <div className="hidden md:block absolute w-[500px] h-[500px] rounded-full border-[60px] border-[#5570F1] opacity-65 blur-3xl -right-[180px]"></div>
-        </div>
+      <div className="absolute inset-0 overflow-hidden z-0">
+  {/* Central Blur Background */}
+  <div className="absolute w-[50vw] h-[25vw] max-w-[400px] max-h-[400px] rounded-full bg-[#5570F1] opacity-30 blur-[80px] top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"></div>
+
+  {/* Left Circle - Ensuring it stays within bounds */}
+  <div className="hidden md:block absolute w-[clamp(400px, 40vw, 350px)] h-[clamp(400px, 30vw, 350px)] rounded-full border-[40px] md:border-[60px] border-[#5570F1] opacity-50 blur-3xl top-[20%] left-[5%]"></div>
+
+  {/* Right Circle - Keeping it inside section */}
+  <div className="hidden md:block absolute w-[clamp(450px, 45vw, 400px)] h-[clamp(450px, 35vw, 400px)] rounded-full border-[40px] md:border-[60px] border-[#5570F1] opacity-50 blur-3xl top-[30%] right-[5%]"></div>
+</div>
+
 
         <motion.h1 
           initial={{ opacity: 0, y: 50 }} 
