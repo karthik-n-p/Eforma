@@ -2,7 +2,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import TopNavbar from "./components/TopNavBar";
+import TopNavbar from "./components/TopNavbar";
 import Home from "./components/Home";
 import Notes from "./components/Notes";
 import Video from "./components/Video";
