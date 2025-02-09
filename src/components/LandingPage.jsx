@@ -76,7 +76,7 @@ const LandingPage = () => {
       <nav className={`fixed w-full transition-all duration-300 z-50 px-8 py-5 flex justify-between items-center`}>
         <div className="flex items-center space-x-10">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-[#5570F1] rounded-lg flex items-center justify-center shadow-lg">
+            <div className="w-10 h-10 bg-[#5570F1] rounded-lg flex items-center justify-center shadow-lg">
               <span className="text-white font-bold text-2xl">E</span>
             </div>
             <h1 className="text-2xl font-bold text-white tracking-wide">
@@ -86,7 +86,7 @@ const LandingPage = () => {
         </div>
         <div className="hidden md:flex">
           <button 
-            className="bg-[#5570F1] px-6 py-3 rounded-lg text-lg font-semibold text-white shadow-lg hover:bg-[#4059C7] transition-all cursor-pointer"
+            className="bg-[#5570F1] px-3 py-2 rounded-lg text-lg font-normal text-white shadow-lg hover:bg-[#4059C7] transition-all cursor-pointer"
             onClick={() => setIsModalOpen(true)}
           >
             Join Us
@@ -173,8 +173,8 @@ const LandingPage = () => {
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center min-h-screen text-center px-6 relative space-y-8 md:space-y-8">
         <div className="absolute inset-0 overflow-hidden z-0">
-          <div className="absolute w-[80vw] h-[30vw] max-w-[500px] max-h-[500px] rounded-full bg-[#5570F1] opacity-30 blur-[120px] top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"></div>
-          <div className="hidden md:block absolute w-[500px] h-[500px] rounded-full border-[60px] border-[#5570F1] opacity-65 blur-3xl top-[300px] -left-[250px]"></div>
+          <div className="absolute w-[70vw] h-[20vw] max-w-[500px] max-h-[500px] rounded-full bg-[#5570F1] opacity-30 blur-[120px] top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="hidden md:block absolute w-[400px] h-[400px] rounded-full border-[60px] border-[#5570F1] opacity-65 blur-3xl top-[210px] -left-[200px]"></div>
           <div className="hidden md:block absolute w-[500px] h-[500px] rounded-full border-[60px] border-[#5570F1] opacity-65 blur-3xl -right-[180px]"></div>
         </div>
 
