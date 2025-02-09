@@ -73,13 +73,13 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#000] to-[#1a1f2e] text-gray-300 overflow-hidden relative">
       {/* Navbar */}
-      <nav className={`fixed w-full transition-all duration-300 z-50 px-8 py-6 flex justify-between items-center`}>
+      <nav className={`fixed w-full transition-all duration-300 z-50 px-8 py-5 flex justify-between items-center`}>
         <div className="flex items-center space-x-10">
           <div className="flex items-center space-x-3">
             <div className="w-12 h-12 bg-[#5570F1] rounded-lg flex items-center justify-center shadow-lg">
               <span className="text-white font-bold text-2xl">E</span>
             </div>
-            <h1 className="text-3xl font-bold text-white tracking-wide">
+            <h1 className="text-2xl font-bold text-white tracking-wide">
               <span className="text-[#5570F1]">ED</span>FORMA
             </h1>
           </div>
