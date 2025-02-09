@@ -190,7 +190,7 @@ const LandingPage = () => {
           transition={{ duration: 1 }} 
           className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-white relative z-10 leading-tight md:leading-snug"
         >
-          Your AI Study Companion
+          The New Way Of Learning
         </motion.h1>
 
         <motion.p 
@@ -199,7 +199,7 @@ const LandingPage = () => {
           transition={{ duration: 1.5 }} 
           className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-md sm:max-w-2xl relative z-10"
         >
-          AI-powered chatbot for KTU students – structured notes and exam-focused learning made easy.
+        AI-powered all-in-one solution for KTU student .Structured notes, exam-focused learning, and seamless preparation.
         </motion.p>
 
         <motion.div 
