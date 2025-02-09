@@ -86,7 +86,7 @@ const LandingPage = () => {
         </div>
         <div className="hidden md:flex">
           <button 
-            className="bg-[#5570F1] px-6 py-3 rounded-lg text-lg font-semibold text-white shadow-lg hover:bg-[#4059C7] transition-all"
+            className="bg-[#5570F1] px-6 py-3 rounded-lg text-lg font-semibold text-white shadow-lg hover:bg-[#4059C7] transition-all cursor-pointer"
             onClick={() => setIsModalOpen(true)}
           >
             Join Us
