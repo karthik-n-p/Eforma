@@ -10,8 +10,8 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-function Navbar() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+function Navbar({isCollapsed,setIsCollapsed}) {
+
   const [notesExpanded, setNotesExpanded] = useState(true);
   const [selectedSemester, setSelectedSemester] = useState("Semester 1");
   const [selectedSubject, setSelectedSubject] = useState("Subject 1");
@@ -51,7 +51,7 @@ function Navbar() {
           {!isCollapsed && <h2 className="text-gray-400 px-2 text-sm font-medium">Forma</h2>}
           <Link
             to="/dashboard/chatbot"
-            className="flex items-center space-x-3 py-2 px-3 rounded-md text-gray-300 hover:bg-[#1A1F2E] transition"
+            className="flex items-center space-x-3 py-2 px-3 rounded-md text-gray-300 hover:bg-[#5570F1] transition"
           >
             <Bot size={18} />
             {!isCollapsed && <span>FormaAi</span>}
@@ -61,7 +61,7 @@ function Navbar() {
           {!isCollapsed && <h2 className="text-gray-400 px-2 text-sm font-medium">Notes</h2>}
           <div>
             <button
-              className="flex items-center justify-between w-full  text-gray-300 py-2 px-3 rounded-md hover:bg-[#1A1F2E] transition"
+              className="flex items-center justify-between w-full  text-gray-300 py-2 px-3 rounded-md hover:bg-[#5570F1] transition"
               onClick={() => setNotesExpanded(!notesExpanded)}
             >
               <div className="flex items-center space-x-3">
@@ -105,7 +105,7 @@ function Navbar() {
                   <Link
                     key={module}
                     to={`/notes/${module.toLowerCase().replace(" ", "-")}`}
-                    className="flex items-center space-x-2 text-gray-400 py-1 px-2 hover:bg-[#1A1F2E] rounded-md transition"
+                    className="flex items-center space-x-2 text-gray-400 py-1 px-2 hover:bg-[#5570F1] rounded-md transition"
                   >
                     <Notebook size={16} />
                     <span>{module}</span>
@@ -119,7 +119,7 @@ function Navbar() {
           {!isCollapsed && <h2 className="text-gray-400 px-2 text-sm font-medium mt-2">Videos</h2>}
           <Link
             to="/videos"
-            className="flex items-center space-x-3  py-2 px-3 rounded-md text-gray-300 hover:bg-[#1A1F2E] transition"
+            className="flex items-center space-x-3  py-2 px-3 rounded-md text-gray-300 hover:bg-[#5570F1] transition"
           >
             <PlayCircle size={18} />
             {!isCollapsed && <span>Videos</span>}
