@@ -21,13 +21,12 @@ function App() {
         <Route
           path="/dashboard/*"
           element={
-            <div className="App min-h-screen flex flex-col">
-              <TopNavbar />
-              <div className="flex flex-1">
+            <div className="App min-h-screen flex flex-col " >
+              <div className="flex flex-1 ">
                 <Navbar />
-                <div className="flex-1 bg-[#F1F5F9] lg:pl-70 sm:pl-10 sm:pt-20 overflow-auto">
+                <div className="flex-1 bg-[#0D0F12] lg:pl-70 sm:pl-10 sm:pt-20 overflow-auto">
                   <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/chatbot" element={<Home />} />
                     <Route path="/notes" element={<Notes />} />
                     <Route path="/video" element={<Video />} />
                   </Routes>
