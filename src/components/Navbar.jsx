@@ -42,7 +42,7 @@
         </div>
 
         {/* Sidebar Main Section */}
-        <div className={`bg-[#1F1F1F] h-[92vh] mt-2 rounded-2xl p-3 pb-15g shadow-lg flex flex-col justify-between transition-all duration-300 ${isCollapsed ? "w-18" : "w-64"}`}>
+        <div className={`bg-[#1F1F1F] h-[92vh] mt-2 rounded-2xl p-3 pb-15  shadow-lg flex flex-col justify-between transition-all duration-300 ${isCollapsed ? "w-18" : "w-64"}`}>
           <div className="space-y-2">
             {/* Forma */}
             {!isCollapsed && <h2 className="text-gray-400 px-2 text-sm font-medium">Forma</h2>}
