@@ -42,7 +42,7 @@
         </div>
 
         {/* Sidebar Main Section */}
-        <div className={`bg-[#1F1F1F] h-[92vh] mt-2 rounded-2xl p-3 pb-6 shadow-lg flex flex-col justify-between transition-all duration-300 ${isCollapsed ? "w-18" : "w-64"}`}>
+        <div className={`bg-[#1F1F1F] h-[92vh] mt-2 rounded-2xl p-3 pb-15g shadow-lg flex flex-col justify-between transition-all duration-300 ${isCollapsed ? "w-18" : "w-64"}`}>
           <div className="space-y-2">
             {/* Forma */}
             {!isCollapsed && <h2 className="text-gray-400 px-2 text-sm font-medium">Forma</h2>}
@@ -110,14 +110,14 @@
               to="/dashboard/videos"
               className="flex items-center space-x-3 py-2 px-3 rounded-md text-gray-300 hover:bg-[#5570F1] transition"
             >
-              <PlayCircle size={18} />
+              <PlayCircle size={28} />
               {!isCollapsed && <span>Videos</span>}
             </Link>
           </div>
 
           {/* Log Out Button */}
           <button className="w-full flex items-center justify-center space-x-2 bg-[#5570F1] text-white py-2 rounded-md hover:bg-[#4256c2] transition">
-            <LogOut size={28} />
+            <LogOut size={18} />
             {!isCollapsed && <span>Log Out</span>}
           </button>
         </div>
