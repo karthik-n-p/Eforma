@@ -20,12 +20,12 @@ function App() {
           path="/dashboard/*"
           element={
             <div className="App min-h-screen flex flex-col">
-              <div className="flex flex-1 ">
+              <div className="flex flex-1 flex-col md:flex-row">
                 <Navbar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
                 <div
-                  className={`flex-1 bg-[#0D0F12] transition-all duration-300 ${
-                    isCollapsed ? "pl-15" : "lg:pl-70 sm:pl-10"
-                  } overflow-none`}
+                  className={`flex-1 bg-[#0D0F12] transition-all duration-300 p-4 sm:pl-6 md:p-0 ${
+                    isCollapsed ? "w-full md:pl-0" : "md:pl-64"
+                  } overflow-auto`}
                 >
                   <Routes>
                     <Route path="chatbot" element={<Home />} />

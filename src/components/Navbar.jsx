@@ -18,8 +18,7 @@ function Navbar() {
 
   // Toggle Collapsed State
   const toggleCollapse = () => {
-    
-    setIsCollapsed(!isCollapsed)
+    setIsCollapsed((prev) => !prev);
   };
 
   return (
@@ -54,7 +53,7 @@ function Navbar() {
           <button
             className="p-2 rounded-md hover:bg-gray-700 transition hidden md:block"
             onClick={toggleCollapse} // Fixed: This now properly toggles isCollapsed
-             
+            
           >
             {isCollapsed ? <ChevronRight size={22} /> : <ChevronLeft size={22} />}
           </button>
