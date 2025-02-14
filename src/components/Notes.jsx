@@ -120,7 +120,7 @@ const Notes = () => {
               {/* Sidebar */}
               <motion.div
                 className="fixed top-0 left-0 h-full bg-[#1A1D21] p-4 border-r border-gray-800 w-64 z-40"
-                initial={{ x: -300 }}
+                initial={{ x: 1200 }}
                 animate={{ x: 0 }}
                 exit={{ x: -300 }}
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
