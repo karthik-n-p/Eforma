@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Search, ChevronDown, ChevronUp, Check } from "lucide-react";
+import { Search, ChevronDown, ChevronUp, Check, Menu } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import moduleData from "../../../gemini_test/pdfs/ktu_modules.json";
 
@@ -12,7 +12,9 @@ const Notes = () => {
   const [xp, setXp] = useState(0);
   const [completedSubtopicIds, setCompletedSubtopicIds] = useState([]);
   const [level, setLevel] = useState(1);
-  const [isLevelUp, setIsLevelUp] = useState(false); // State to trigger level-up animation
+  const [isLevelUp, setIsLevelUp] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768); // Track mobile view
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Toggle sidebar on mobile
 
   // Extract modules from JSON data
   const modules = moduleData[0].modules.map((module) => ({
@@ -59,9 +61,9 @@ const Notes = () => {
         const newXp = prevXp + 10;
         if (newXp >= 100) {
           setLevel((prevLevel) => prevLevel + 1);
-          setIsLevelUp(true); // Trigger level-up animation
-          setTimeout(() => setIsLevelUp(false), 1000); // Reset animation after 1 second
-          return newXp % 100; // Reset XP after leveling up
+          setIsLevelUp(true);
+          setTimeout(() => setIsLevelUp(false), 1000);
+          return newXp % 100;
         }
         return newXp;
       });
@@ -77,93 +79,210 @@ const Notes = () => {
     }
   }, [selectedSubtopic]);
 
+  // Handle window resize for mobile detection
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   if (!selectedModule) {
     return <div className="flex-1 p-8 overflow-y-auto">Module not found.</div>;
   }
 
   return (
-    <div className="p-6 flex h-screen bg-[#0D0F12] text-white">
-      {/* Sidebar */}
-      <motion.div
-        className="bg-[#1A1D21] p-4 border-r border-gray-800 w-64"
-        initial={{ width: 256 }}
-        animate={{ width: 256 }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      >
-        {/* Search Bar */}
-        <motion.div
-          className="relative mb-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2 }}
+    <div className="p-6 flex flex-col md:flex-row h-screen bg-[#0D0F12] text-white">
+      {/* Mobile Toggle Button */}
+      {isMobile && (
+        <button
+          className="fixed top-4 right-4 z-50 p-2 bg-[#5570F1] text-white rounded-md md:hidden"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         >
-          <input
-            type="text"
-            placeholder="Search"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-[#2D2F33] text-white py-2 px-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#5570F1]"
-          />
-          <Search size={18} className="absolute right-3 top-2.5 text-gray-400" />
-        </motion.div>
+          <Menu size={24} />
+        </button>
+      )}
 
-        {/* Module List */}
-        <div className="space-y-2">
-          {filteredModules.map((module) => (
-            <div key={module.id}>
+      {/* Sidebar for Mobile */}
+      {isMobile && (
+        <AnimatePresence>
+          {isSidebarOpen && (
+            <>
+              {/* Backdrop */}
               <motion.div
-                className={`flex items-center justify-between py-2 px-3 rounded-md text-gray-300 hover:bg-[#5570F1] transition cursor-pointer ${
-                  moduleId === module.id ? "bg-[#5570F1]" : ""
-                }`}
-                onClick={() => toggleModule(module.id)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="fixed inset-0 bg-black bg-opacity-50 z-30"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsSidebarOpen(false)}
+              />
+              {/* Sidebar */}
+              <motion.div
+                className="fixed top-0 left-0 h-full bg-[#1A1D21] p-4 border-r border-gray-800 w-64 z-40"
+                initial={{ x: -300 }}
+                animate={{ x: 0 }}
+                exit={{ x: -300 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
               >
-                <span>{module.name}</span>
-                <button className="p-1 rounded-md hover:bg-gray-700 transition">
-                  {expandedModule === module.id ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                </button>
-              </motion.div>
-              <AnimatePresence>
-                {expandedModule === module.id && (
-                  <motion.div
-                    className="pl-4 mt-2 space-y-2"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {module.subtopics.map((subtopic) => (
-                      <Link
-                        key={subtopic.id}
-                        to={`/dashboard/notes/${module.id}/${encodeURIComponent(subtopic.id)}`}
-                        className={`flex items-center space-x-2 py-1 px-2 rounded-md text-gray-300 hover:bg-[#5570F1] transition ${
-                          decodedSubtopicId === subtopic.id ? "bg-[#5570F1]" : ""
+                {/* Search Bar */}
+                <motion.div
+                  className="relative mb-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full bg-[#2D2F33] text-white py-2 px-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#5570F1]"
+                  />
+                  <Search size={18} className="absolute right-3 top-2.5 text-gray-400" />
+                </motion.div>
+
+                {/* Module List */}
+                <div className="space-y-2">
+                  {filteredModules.map((module) => (
+                    <div key={module.id}>
+                      <motion.div
+                        className={`flex items-center justify-between py-3 px-4 rounded-md text-gray-300 hover:bg-[#5570F1] transition cursor-pointer ${
+                          moduleId === module.id ? "bg-[#5570F1]" : ""
                         }`}
+                        onClick={() => toggleModule(module.id)}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
                       >
-                        {/* Strikethrough effect for completed subtopics */}
-                        <span
-                          className={`${
-                            isSubtopicCompleted(subtopic.id) ? "line-through text-gray-500" : ""
+                        <span className="text-lg">{module.name}</span>
+                        <button className="p-2 rounded-md hover:bg-gray-700 transition">
+                          {expandedModule === module.id ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+                        </button>
+                      </motion.div>
+                      <AnimatePresence>
+                        {expandedModule === module.id && (
+                          <motion.div
+                            className="pl-6 mt-2 space-y-3"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            {module.subtopics.map((subtopic) => (
+                              <Link
+                                key={subtopic.id}
+                                to={`/dashboard/notes/${module.id}/${encodeURIComponent(subtopic.id)}`}
+                                className={`flex items-center space-x-3 py-2 px-3 rounded-md text-gray-300 hover:bg-[#5570F1] transition ${
+                                  decodedSubtopicId === subtopic.id ? "bg-[#5570F1]" : ""
+                                }`}
+                                onClick={() => setIsSidebarOpen(false)}
+                              >
+                                <span
+                                  className={`text-md ${
+                                    isSubtopicCompleted(subtopic.id) ? "line-through text-gray-500" : ""
+                                  }`}
+                                >
+                                  {subtopic.name}
+                                </span>
+                                {isSubtopicCompleted(subtopic.id) && (
+                                  <Check size={20} className="text-[#4ADE80]" />
+                                )}
+                              </Link>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+      )}
+
+      {/* Sidebar for Desktop */}
+      {!isMobile && (
+        <motion.div
+          className="bg-[#1A1D21] p-4 border-r border-gray-800 w-64"
+          initial={{ width: 256 }}
+          animate={{ width: 256 }}
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        >
+          {/* Search Bar */}
+          <motion.div
+            className="relative mb-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2 }}
+          >
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-[#2D2F33] text-white py-2 px-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#5570F1]"
+            />
+            <Search size={18} className="absolute right-3 top-2.5 text-gray-400" />
+          </motion.div>
+
+          {/* Module List */}
+          <div className="space-y-2">
+            {filteredModules.map((module) => (
+              <div key={module.id}>
+                <motion.div
+                  className={`flex items-center justify-between py-3 px-4 rounded-md text-gray-300 hover:bg-[#5570F1] transition cursor-pointer ${
+                    moduleId === module.id ? "bg-[#5570F1]" : ""
+                  }`}
+                  onClick={() => toggleModule(module.id)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <span className="text-lg">{module.name}</span>
+                  <button className="p-2 rounded-md hover:bg-gray-700 transition">
+                    {expandedModule === module.id ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
+                  </button>
+                </motion.div>
+                <AnimatePresence>
+                  {expandedModule === module.id && (
+                    <motion.div
+                      className="pl-6 mt-2 space-y-3"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {module.subtopics.map((subtopic) => (
+                        <Link
+                          key={subtopic.id}
+                          to={`/dashboard/notes/${module.id}/${encodeURIComponent(subtopic.id)}`}
+                          className={`flex items-center space-x-3 py-2 px-3 rounded-md text-gray-300 hover:bg-[#5570F1] transition ${
+                            decodedSubtopicId === subtopic.id ? "bg-[#5570F1]" : ""
                           }`}
                         >
-                          {subtopic.name}
-                        </span>
-                        {isSubtopicCompleted(subtopic.id) && (
-                          <Check size={16} className="text-[#4ADE80]" /> // Minimal check icon
-                        )}
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
-        </div>
-      </motion.div>
+                          <span
+                            className={`text-md ${
+                              isSubtopicCompleted(subtopic.id) ? "line-through text-gray-500" : ""
+                            }`}
+                          >
+                            {subtopic.name}
+                          </span>
+                          {isSubtopicCompleted(subtopic.id) && (
+                            <Check size={20} className="text-[#4ADE80]" />
+                          )}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
 
       {/* Main Content */}
-      <div className="flex-1 p-8 overflow-y-auto">
+      <div className="flex-1 p-4 md:p-8 overflow-y-auto">
         {/* XP Tracker */}
         <motion.div
           className="mb-6"
@@ -171,8 +290,7 @@ const Notes = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <div className="flex items-center justify-between">
-            {/* Level Badge with Glow Animation */}
+          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <motion.div
               className="flex items-center space-x-3"
               animate={{
@@ -188,10 +306,8 @@ const Notes = () => {
                 {xp}/100 XP
               </div>
             </motion.div>
-
-            {/* Progress Bar with Glow Animation */}
             <motion.div
-              className="w-1/2 bg-gray-800 rounded-full h-2.5 relative"
+              className="w-full md:w-1/2 bg-gray-800 rounded-full h-2.5 relative"
               animate={{
                 boxShadow: isLevelUp ? "0 0 10px 2px rgba(74, 222, 128, 0.8)" : "none",
               }}

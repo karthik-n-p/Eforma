@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageSquare, Globe, Send } from "lucide-react";
+import { MessageSquare, Globe, Send, LucideFileQuestion, BookMarked, ShieldQuestion, ShieldQuestionIcon } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm"; // Enables tables, lists, and more in Markdown
 
@@ -72,9 +72,9 @@ export default function ChatUI() {
             </p>
 
             <div className="grid grid-cols-3 gap-2 mb-4">
-              <PromptButton icon={<MessageSquare />} text="Saved Prompts" />
+              <PromptButton icon={<MessageSquare />} text="Chat with Notes" />
               <PromptButton icon={<Globe />} text="Multilingual Support" />
-              <PromptButton icon={<Send />} text="Media Upload" />
+              <PromptButton icon={<ShieldQuestionIcon />} text="Exam Oriented" />
             </div>
           </>
         )}

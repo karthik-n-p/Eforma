@@ -315,12 +315,13 @@ const LandingPage = () => {
     transition={{ duration: 1.5 }}
     className="relative z-10 mt-4 sm:mt-6 flex items-center space-x-4"
   >
-    <button
+    <Link
+      to='login'
       onClick={() => setIsModalOpen(true)}
       className="bg-gradient-to-r from-[#5570F1] to-[#4059C7] rounded-[100px] px-6 sm:px-10 py-2 sm:py-3 text-lg sm:text-xl font-bold text-white shadow-lg hover:scale-105 transition-transform"
     >
       Join Us
-    </button>
+    </Link>
     
     <Link to='/dashboard/chatbot'
       className="border border-[#5570F1] text-[#5570F1] px-6 sm:px-10 py-2 sm:py-3 rounded-[100px] text-lg sm:text-xl font-bold hover:bg-[#5570F1] hover:text-white transition-all flex items-center space-x-2"
