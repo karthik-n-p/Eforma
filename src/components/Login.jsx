@@ -151,6 +151,16 @@ const Login = () => {
                 className="w-full p-2 bg-[#2D2F33] text-white border border-gray-700 rounded focus:ring-2 focus:ring-[#5570F1] focus:outline-none"
                 required
               />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full p-2 bg-[#2D2F33] text-white border border-gray-700 rounded focus:ring-2 focus:ring-[#5570F1] focus:outline-none"
+                required={isLogin}
+              />
+
 
               
               <button
