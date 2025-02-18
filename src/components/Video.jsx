@@ -116,7 +116,7 @@ export default function Videos() {
         )}
 
 {hasInteracted && (
-          <div className="flex-1 overflow-y-auto space-y-3 p-2 mb-4 max-h-[60vh]">
+          <div className="flex-1 overflow-y-auto space-y-3 p-2 mb-4 max-h-[30vh]">
       
             {messages.map((msg, index) => (
               <div key={index} className={`p-2 rounded-lg text-sm w-fit max-w-[80%] ${msg.role === "user" ? "bg-[#5570F1] ml-auto" : "bg-gray-700 mr-auto"}`}>
@@ -157,13 +157,16 @@ export default function Videos() {
 
       {/* Notes section with framer-motion animation */}
       <motion.div
-        className={`flex flex-col items-center justify-center transition-all duration-300 ${selectedModule ? "lg:w-1/2" : "hidden"}`}
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.3 }}
-      >
-        {selectedModule && <Notes module_id1={selectedModule.toLowerCase()} />}
-      </motion.div>
+  className={`flex flex-col items-center justify-center transition-all duration-300 ${
+    selectedModule ? "w-full lg:w-1/2 min-h-[40vh] h-full overflow-y-auto" : "hidden"
+  }`}
+  initial={{ opacity: 0, scale: 0.9 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.3 }}
+>
+  {selectedModule && <Notes module_id1={selectedModule.toLowerCase()} />}
+</motion.div>
+
     </div>
   );
 }
