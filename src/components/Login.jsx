@@ -8,8 +8,7 @@ const Login = () => {
     name: "",
     email: "",
     semester: "",
-    featureRequest: "",
-    password: "",
+    featureRequest: ""
   });
 
   const [isLogin, setIsLogin] = useState(true);
@@ -152,7 +151,6 @@ const Login = () => {
                 className="w-full p-2 bg-[#2D2F33] text-white border border-gray-700 rounded focus:ring-2 focus:ring-[#5570F1] focus:outline-none"
                 required
               />
-
               <input
                 type="password"
                 name="password"
@@ -163,6 +161,8 @@ const Login = () => {
                 required={isLogin}
               />
 
+
+              
               <button
                 type="submit"
                 className="w-full p-2 text-white bg-[#5570F1] rounded hover:bg-[#4054B2] transition-all duration-200 focus:outline-none"

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Search, ChevronDown, ChevronUp, Check, Menu } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import moduleData from "../../../gemini_test/pdfs/ktu_modules.json";
+import moduleData from "./ktu_modules.json";
 
 const Notes = ({module_id1}) => {
   if(module_id1){

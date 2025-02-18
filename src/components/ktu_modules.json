@@ -1,0 +1,440 @@
+[
+  {
+    "subject_name": "Programming in C",
+    "modules": [
+      {
+        "module_name": "Module 1",
+        "description": "Module 1 introduces basic computer organization and the concept of programming. It covers processor and memory, input/output devices, and different types of programming languages like compiled and interpreted languages. Additionally, it delves into number systems, algorithm concepts, flowchart creation, and program development steps.",
+        "subtopics": [
+          {
+            "subtopic_name": "Processor and Memory",
+            "content": "A processor, also known as a Microprocessor, is a small electronic chip inside computers. It manages instructions like arithmetical, logical, and input/output operations. Memory stores data and instructions and comes in three types: cache memory, primary memory, and secondary memory. Cache memory is high-speed semiconductor memory that speeds up the CPU. Primary memory holds data and instructions the computer is currently using. Secondary memory stores data/information permanently.",
+            "keywords": [
+              "Microprocessor",
+              "Cache Memory",
+              "Primary Memory",
+              "Secondary Memory",
+              "ALU",
+              "FPU",
+              "Registers"
+            ],
+            "questions": [
+              "Write short note on processor and memory in a computer."
+            ]
+          },
+          {
+            "subtopic_name": "Compiled vs. Interpreted Languages",
+            "content": "Compiled languages are programming languages with implementations involving compilers. Interpreted languages execute instructions directly. Compiled languages usually compile into machine language instructions, whereas interpreted languages directly execute without compiling first. Compiled programs generally run faster, but interpreted programs can be modified during runtime. Examples of compiled languages include C, C++, C#, while examples of interpreted languages include JavaScript, Perl, Python, and BASIC.",
+            "keywords": [
+              "Compiled Language",
+              "Interpreted Language",
+              "Compiler",
+              "Interpreter",
+              "Machine Language",
+              "Runtime Modification"
+            ],
+            "questions": [
+              "What are the differences between compiled and interpreted languages? Give example for each."
+            ]
+          },
+          {
+            "subtopic_name": "Algorithm and Flowchart",
+            "content": "Algorithms are step-by-step procedures for solving a problem. Flowcharts are visual representations of algorithms using symbols. Linear search and bubble sort are two examples where algorithms can be represented with flowcharts. Flowcharts use shapes to represent decision (diamond), process (rectangle) and start/end etc.",
+            "keywords": [
+              "Algorithm",
+              "Flowchart",
+              "Linear Search",
+              "Bubble Sort",
+              "Pseudo code"
+            ],
+            "questions": [
+              "Draw a flow chart to find the position of an element in a given sequence, using linear searching technique. With an example explain how the flowchart finds the position of a given element.",
+              "Write a pseudo code representing the flowchart for linear searching.",
+              "With the help of a flow chart, explain the bubble sort operation. Illustrate with an example.",
+              "Write an algorithm representing the flowchart for bubble sort."
+            ]
+          }
+        ],
+        "question_bank": [
+          {
+            "question_text": "Write short note on processor and memory in a computer.",
+            "probability": 80
+          },
+          {
+            "question_text": "What are the differences between compiled and interpreted languages? Give example for each.",
+            "probability": 75
+          },
+          {
+            "question_text": "Draw a flow chart to find the position of an element in a given sequence, using linear searching technique. With an example explain how the flowchart finds the position of a given element.",
+            "probability": 60
+          },
+          {
+            "question_text": "Write a pseudo code representing the flowchart for linear searching.",
+            "probability": 50
+          },
+          {
+            "question_text": "With the help of a flow chart, explain the bubble sort operation. Illustrate with an example.",
+            "probability": 60
+          },
+          {
+            "question_text": "Write an algorithm representing the flowchart for bubble sort.",
+            "probability": 50
+          }
+        ]
+      },
+      {
+        "module_name": "Module 2",
+        "description": "Module 2 explores fundamental programming constructs in C including data types, operators, and control flow statements. It covers how to write simple C programs, use standard input/output functions, and utilize decision-making and looping statements. The module emphasizes practical aspects by including examples of reverse number programs and other elementary algorithms.",
+        "subtopics": [
+          {
+            "subtopic_name": "Data Types and Operators",
+            "content": "C operators can be classified into arithmetic, relational, logical, bitwise, assignment, conditional, and special operators. Data types in C define the type of data that can be stored in a variable. Arithmetic operators perform mathematical operations, relational operators compare two operands, logical operators combine conditions, and bitwise operators perform bit-level manipulations. Assignment operators assign values to variables, and conditional operators execute different codes based on conditions.",
+            "keywords": [
+              "Arithmetic Operators",
+              "Relational Operators",
+              "Logical Operators",
+              "Bitwise Operators",
+              "Assignment Operators",
+              "Conditional Operators",
+              "Data Types"
+            ],
+            "questions": [
+              "With suitable examples, explain various operators in C.",
+              "Explain how characters are stored and processed in C."
+            ]
+          },
+          {
+            "subtopic_name": "Control Flow Statements",
+            "content": "Control flow statements in C include decision-making statements (if, if-else, switch) and looping statements (for, while, do-while). Decision-making statements allow the program to execute different code blocks based on conditions. Looping statements allow the program to repeatedly execute a block of code. Goto statements provide unconditional jumps but are discouraged due to making the code difficult to trace.",
+            "keywords": [
+              "If Statement",
+              "If-Else Statement",
+              "Switch Statement",
+              "For Loop",
+              "While Loop",
+              "Do-While Loop",
+              "Goto Statement"
+            ],
+            "questions": [
+              "Is it advisable to use goto statements in a C program? Justify your answer."
+            ]
+          },
+          {
+            "subtopic_name": "Standard I/O Functions",
+            "content": "Standard input/output functions in C include printf for formatted output and scanf for formatted input. Printf is used to display text and variables, using format specifiers like %d, %f, %c for integers, floats, and characters, respectively. Scanf reads formatted input from the user and stores it in variables. Both functions require including stdio.h. Other I/O functions include gets, puts, getchar and putchar.",
+            "keywords": [
+              "Printf",
+              "Scanf",
+              "Formatted Output",
+              "Formatted Input",
+              "Stdio.h",
+              "Gets",
+              "Puts"
+            ],
+            "questions": [
+              "Explain how one can use the builtin function in C, scanf to read values of different data types. Also explain using examples how one can use the builtin function in C, printf for text formatting.",
+              "Write a C program to read a sentence through keyboard and to display the count of white spaces in the given sentence."
+            ]
+          },
+          {
+            "subtopic_name": "Write Simple C programs",
+            "content": "In this the program to find reverse of n digit number",
+            "keywords": [
+              "Write Simple C programs"
+            ],
+            "questions": [
+              "Write a C program to read a Natural Number through keyboard and to display the reverse"
+            ]
+          }
+        ],
+        "question_bank": [
+          {
+            "question_text": "With suitable examples, explain various operators in C.",
+            "probability": 75
+          },
+          {
+            "question_text": "Explain how characters are stored and processed in C.",
+            "probability": 40
+          },
+          {
+            "question_text": "Is it advisable to use goto statements in a C program? Justify your answer.",
+            "probability": 55
+          },
+          {
+            "question_text": "Explain how one can use the builtin function in C, scanf to read values of different data types. Also explain using examples how one can use the builtin function in C, printf for text formatting.",
+            "probability": 70
+          },
+          {
+            "question_text": "Write a C program to read a sentence through keyboard and to display the count of white spaces in the given sentence.",
+            "probability": 35
+          },
+          {
+            "question_text": "Write a C program to read a Natural Number through keyboard and to display the reverse",
+            "probability": 65
+          }
+        ]
+      },
+      {
+        "module_name": "Module 3",
+        "description": "Module 3 focuses on functions, arrays, and strings in C. It covers the definition, declaration, and calls of user-defined functions, storage classes, and the concept of recursion. The module also discusses single and multi-dimensional arrays, string operations without built-in functions, and includes example programs for reversing arrays and concatenating strings.",
+        "subtopics": [
+          {
+            "subtopic_name": "Functions",
+            "content": "Functions in C are self-contained blocks of code that perform a specific task. They enhance readability, promote code reuse, and simplify complexity. Functions need to be defined, declared, and called. Storage classes (auto, static, extern) specify variable scope and lifetime.",
+            "keywords": [
+              "Function Definition",
+              "Function Declaration",
+              "Function Call",
+              "Storage Classes",
+              "Scope",
+              "Lifetime"
+            ],
+            "questions": [
+              "What are the advantages of using functions in a program?",
+              "With a simple example program, explain scope and lifetime of variables in C.",
+              "Write a function in C which takes the address of a single dimensional array (containing finite sequence of numbers) and the number of numbers stored in the array as arguments and stores the numbers in the same array in reverse order. Use pointers to access the elements of the array.",
+              "With a suitable example, explain the concept of pass by reference."
+            ]
+          },
+          {
+            "subtopic_name": "Recursion",
+            "content": "Recursion is a technique where a function calls itself, breaking a problem into smaller, self-similar subproblems. A terminating condition is required to prevent infinite loops. Examples include calculating factorial, Fibonacci sequences, and tree traversals.",
+            "keywords": [
+              "Recursive Function",
+              "Terminating Condition",
+              "Factorial",
+              "Fibonacci Sequence"
+            ],
+            "questions": [
+              "What is recursion? Give an example."
+            ]
+          },
+          {
+            "subtopic_name": "Arrays",
+            "content": "Arrays are collections of elements of the same data type. They can be single or multi-dimensional. Array operations include declaration, initialization, accessing elements. Example of using array using pointers. Arrays can be passed as arguments to functions. Strings are character arrays terminated by a null character. String operations can be implemented without built-in functions.",
+            "keywords": [
+              "Single Dimensional Array",
+              "Multi-Dimensional Array",
+              "Array Declaration",
+              "Array Initialization",
+              "Array Element Access",
+              "Strings"
+            ],
+            "questions": [
+              "Explain the different ways in which you can declare & initialize a single dimensional array.",
+              "Write a function in C which takes a 2-Dimensional array storing a matrix of numbers and the order of the matrix (number of rows and columns) as arguments and displays the sum of the elements stored in each row."
+            ]
+          },
+          {
+            "subtopic_name": "Strings",
+            "content": "Strings are character arrays, terminated by a null character ('\\0'). Operations on strings, such as concatenation, finding length, and copying, can be implemented manually without using built-in functions like strlen, strcat, and strcpy.",
+            "keywords": [
+              "Character Array",
+              "Null Termination",
+              "String Concatenation",
+              "String Length",
+              "String Copy"
+            ],
+            "questions": [
+              "Without using any builtin string processing function like strlen, strcat etc., write a program to concatenate two strings."
+            ]
+          },
+          {
+            "subtopic_name": "passing array as argument to function",
+            "content": "passing the third element of an array and interchanges with the 4th element and finally prints",
+            "keywords": [
+              "passing array",
+              "Single Dimensional Array"
+            ],
+            "questions": [
+              "With a suitable example, explain how pointers can help in changing the content of a single dimensionally array passed as an argument to a function in C."
+            ]
+          }
+        ],
+        "question_bank": [
+          {
+            "question_text": "What are the advantages of using functions in a program?",
+            "probability": 70
+          },
+          {
+            "question_text": "With a simple example program, explain scope and lifetime of variables in C.",
+            "probability": 60
+          },
+          {
+            "question_text": "What is recursion? Give an example.",
+            "probability": 50
+          },
+          {
+            "question_text": "Explain the different ways in which you can declare & initialize a single dimensional array.",
+            "probability": 65
+          },
+          {
+            "question_text": "Write a function in C which takes the address of a single dimensional array (containing finite sequence of numbers) and the number of numbers stored in the array as arguments and stores the numbers in the same array in reverse order. Use pointers to access the elements of the array.",
+            "probability": 35
+          },
+          {
+            "question_text": "Without using any builtin string processing function like strlen, strcat etc., write a program to concatenate two strings.",
+            "probability": 45
+          },
+          {
+            "question_text": "With a suitable example, explain the concept of pass by reference.",
+            "probability": 50
+          },
+          {
+            "question_text": "With a suitable example, explain how pointers can help in changing the content of a single dimensionally array passed as an argument to a function in C.",
+            "probability": 45
+          },
+          {
+            "question_text": "Write a function in C which takes a 2-Dimensional array storing a matrix of numbers and the order of the matrix (number of rows and columns) as arguments and displays the sum of the elements stored in each row.",
+            "probability": 30
+          }
+        ]
+      },
+      {
+        "module_name": "Module 4",
+        "description": "Module 4 covers structures, unions, and pointers in C. It details the syntax, declaration, initialization, and accessing of structure and union members with example programs. It also explores the basic concepts of pointers, address and dereferencing operators, pointer arithmetic, dynamic memory allocation using malloc and calloc, and illustrates the concept of call by reference.",
+        "subtopics": [
+          {
+            "subtopic_name": "Structures and Unions",
+            "content": "Structures are collections of variables of different data types grouped under a single name, allowing complex data representation. Unions are similar but share the same memory location, making them space-efficient for storing different types of data at different times. Structure members can be accessed using the dot (.) operator, whereas union members also use the dot operator. Structures are struct student keyword, unions are union number keyword",
+            "keywords": [
+              "Structure Declaration",
+              "Structure Initialization",
+              "Structure Member Access",
+              "Union Declaration",
+              "Union Member Access",
+              "Dot Operator"
+            ],
+            "questions": [
+              "With a suitable example, explain the differences between a structure and a union in C"
+            ]
+          },
+          {
+            "subtopic_name": "Pointers",
+            "content": "Pointers hold the address of variables. Address (&) and dereferencing (*) operators are used to get the address of a variable and access the value at that address. Pointer arithmetic allows incrementing or decrementing pointers. Dynamic memory allocation, using malloc and calloc, allows allocating memory during runtime.",
+            "keywords": [
+              "Address Operator",
+              "Dereferencing Operator",
+              "Pointer Arithmetic",
+              "Malloc",
+              "Calloc",
+              "Dynamic Memory Allocation"
+            ],
+            "questions": [
+              "With a suitable example, explain how pointers can help in changing the content of a single dimensionally array passed as an argument to a function in C."
+            ]
+          },
+          {
+            "subtopic_name": "Call by Reference",
+            "content": "In call by reference, addresses of actual parameters are passed to the function. Any changes made to the parameters inside the function will reflect in the original variables.",
+            "keywords": [
+              "Pass by Reference",
+              "Address Passing",
+              "Parameter Modification"
+            ],
+            "questions": [
+              "With a suitable example, explain the concept of pass by reference."
+            ]
+          }
+        ],
+        "question_bank": [
+          {
+            "question_text": "With a suitable example, explain the differences between a structure and a union in C",
+            "probability": 65
+          },
+          {
+            "question_text": "With a suitable example, explain how pointers can help in changing the content of a single dimensionally array passed as an argument to a function in C.",
+            "probability": 60
+          },
+          {
+            "question_text": "With a suitable example, explain the concept of pass by reference.",
+            "probability": 55
+          }
+        ]
+      },
+      {
+        "module_name": "Module 5",
+        "description": "Module 5 introduces file processing in C including file modes, file pointer functions, and file I/O operations. It covers opening and closing files using fopen and fclose, reading and writing data with getc, putc, fgets, fputs, fread, and fwrite. Error handling functions, and basic file operations are also explored and contrasted with file access methods such as sequential and random access.",
+        "subtopics": [
+          {
+            "subtopic_name": "File Modes and File Pointer Functions",
+            "content": "File modes include read ('r'), write ('w'), append ('a'), and their combinations ('r+', 'w+', 'a+'). File pointer functions include fopen (to open a file), fclose (to close a file), and fseek (to move the file pointer). Each mode has specific uses; 'r' opens for reading, 'w' opens for writing, and 'a' opens for appending. Additional modes allow reading and writing simultaneously.",
+            "keywords": [
+              "File Mode",
+              "Fopen",
+              "Fclose",
+              "Fseek",
+              "Read",
+              "Write",
+              "Append"
+            ],
+            "questions": [
+              "With an example, explain the different modes of opening a file.",
+              "Using the prototypes explain the functionality provided by the following functions. fseek(), ftell(), fread(), fwrite(), rewind()"
+            ]
+          },
+          {
+            "subtopic_name": "File I/O Operations",
+            "content": "File I/O functions include getc and putc for character-wise I/O, fgets and fputs for line-wise I/O, and fread and fwrite for block-wise I/O. These functions allow reading and writing data to and from files.",
+            "keywords": [
+              "Getc",
+              "Putc",
+              "Fgets",
+              "Fputs",
+              "Fread",
+              "Fwrite",
+              "File Input",
+              "File Output"
+            ],
+            "questions": [
+              "Using the prototypes explain the functionality provided by the following functions. fseek(), ftell(), fread(), fwrite(), rewind()"
+            ]
+          },
+          {
+            "subtopic_name": "Sequential vs. Random Access Files",
+            "content": "Sequential access files are accessed in a linear order, from the beginning. Random access files can be accessed in any order, using indexing. Sequential access is faster for reading in order, whereas random access allows direct access.",
+            "keywords": [
+              "Sequential Access",
+              "Random Access",
+              "File Indexing",
+              "Linear Access",
+              "Direct Access"
+            ],
+            "questions": [
+              "Differentiate between sequential files and random access files?"
+            ]
+          },
+          {
+            "subtopic_name": "Matrix Diagonal",
+            "content": "C Program to check whether a given matrix is a diagonal matrix.",
+            "keywords": [
+              "Matrix Diagonal",
+              "Multi-Dimensional Array"
+            ],
+            "questions": [
+              "Write a C program to check whether a given matrix is a diagonal matrix."
+            ]
+          }
+        ],
+        "question_bank": [
+          {
+            "question_text": "With an example, explain the different modes of opening a file.",
+            "probability": 70
+          },
+          {
+            "question_text": "Differentiate between sequential files and random access files?",
+            "probability": 45
+          },
+          {
+            "question_text": "Using the prototypes explain the functionality provided by the following functions. fseek(), ftell(), fread(), fwrite(), rewind()",
+            "probability": 70
+          },
+          {
+            "question_text": "Write a C program to check whether a given matrix is a diagonal matrix.",
+            "probability": 45
+          }
+        ]
+      }
+    ]
+  }
+]
