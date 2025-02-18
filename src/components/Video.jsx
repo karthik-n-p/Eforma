@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MessageSquare, Globe, Send, ShieldQuestionIcon } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -29,7 +29,7 @@ export default function Videos() {
             semester: "S2",
             subject: "Programming-in-C",
             module: selectedModule || "Module_1",
-            question: customQuestion || input+ `Add a follow up question to keep the conversation keep going`,
+            question: customQuestion || input + ` Add a follow-up question to keep the conversation going`,
           }),
         }
       );
@@ -51,24 +51,71 @@ export default function Videos() {
     handleSend(`You are a tutor for ${module}. Greet Karthik and ask for doubts.`);
   };
 
+  // Show the dropdown only after user interaction
+  const handleDropdownChange = (e) => {
+    setSelectedModule(e.target.value);
+    handleSend(`You are a tutor for ${e.target.value}. Greet Karthik and ask for doubts.`);
+  };
+
   return (
     <div className={`flex flex-col-reverse sm:flex-row items-center h-screen bg-black text-white p-4 transition-all duration-300 ${selectedModule ? "justify-between" : "justify-center"}`}>
       <div className={`flex flex-col ${selectedModule ? "lg:w-1/2" : "w-[90%] sm:w-[400px]"} h-auto bg-gray-900 rounded-xl p-6 shadow-xl transition-all duration-300`}>
         {!hasInteracted && !isTyping && (
           <>
-            <h2 className="text-xl font-semibold text-center mb-2 text-[#5570F1]">How can I help you today?</h2>
+            <h2 className="text-xl font-semibold text-center mb-2 text-[#5570F1]">
+              How can I help you today?
+            </h2>
             <p className="text-center text-sm text-gray-400 pb-4">Select a module to begin!</p>
-            </>   )}
-            <div className="grid grid-cols-2 gap-2 mb-4 sm:grid-cols-1 lg:grid-cols-2">
-              <PromptButton icon={<ShieldQuestionIcon />} text="Module_1" onClick={() => handleModuleSelect("Module_1")} />
-              <PromptButton icon={<ShieldQuestionIcon />} text="Module_2" onClick={() => handleModuleSelect("Module_2")} />
-              <PromptButton icon={<ShieldQuestionIcon />} text="Module_3" onClick={() => handleModuleSelect("Module_3")} />
-              <PromptButton icon={<ShieldQuestionIcon />} text="Module_4" onClick={() => handleModuleSelect("Module_4")} />
-            </div>
-        
-     
+          </>
+        )}
 
-        {hasInteracted && (
+        {/* Display the dropdown only after the user has interacted */}
+        {hasInteracted ? (
+          <div className="mb-4">
+            <label htmlFor="module" className="block text-gray-400 mb-2">
+              Select Module
+            </label>
+            <select
+              id="module"
+              value={selectedModule || ""}
+              onChange={handleDropdownChange}
+              className="w-full p-3 rounded-lg bg-gray-800 text-white outline-none border border-[#5570F1] focus:border-[#7290F3] transition"
+            >
+              <option value="" disabled>
+                Select a module
+              </option>
+              <option value="Module_1">Module_1</option>
+              <option value="Module_2">Module_2</option>
+              <option value="Module_3">Module_3</option>
+              <option value="Module_4">Module_4</option>
+            </select>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-2 mb-4 sm:grid-cols-1 lg:grid-cols-2">
+            <PromptButton
+              icon={<ShieldQuestionIcon />}
+              text="Module_1"
+              onClick={() => handleModuleSelect("Module_1")}
+            />
+            <PromptButton
+              icon={<ShieldQuestionIcon />}
+              text="Module_2"
+              onClick={() => handleModuleSelect("Module_2")}
+            />
+            <PromptButton
+              icon={<ShieldQuestionIcon />}
+              text="Module_3"
+              onClick={() => handleModuleSelect("Module_3")}
+            />
+            <PromptButton
+              icon={<ShieldQuestionIcon />}
+              text="Module_4"
+              onClick={() => handleModuleSelect("Module_4")}
+            />
+          </div>
+        )}
+
+{hasInteracted && (
           <div className="flex-1 overflow-y-auto space-y-3 p-2 mb-4 max-h-[60vh]">
       
             {messages.map((msg, index) => (
@@ -133,4 +180,3 @@ function PromptButton({ icon, text, onClick }) {
     </motion.button>
   );
 }
-

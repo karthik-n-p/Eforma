@@ -62,7 +62,7 @@ function Navbar({isCollapsed,setIsCollapsed}) {
           <div className="space-y-2">
             <NavItem to="/dashboard/chatbot" icon={Bot} label="FormaAi" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} />
             <NavItem to="/dashboard/notes/module_1" icon={Notebook} label="Notes" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} />
-            <NavItem to="/dashboard/videos" icon={PlayCircle} label="Videos" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} />
+            <NavItem to="/dashboard/videos" icon={PlayCircle} label="Dynamo" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} />
           </div>
 
           {/* Log Out Button Positioned Higher */}
