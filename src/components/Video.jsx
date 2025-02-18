@@ -50,7 +50,7 @@ console.log(storedUser)
 
   const handleModuleSelect = (module) => {
     setSelectedModule(module);
-    handleSend(`You are a tutor for ${module}. Greet Karthik and ask for doubts.`);
+    handleSend(`You are a tutor for ${module}. Greet user and ask for doubts.`);
   };
 
   // Show the dropdown only after user interaction
