@@ -3,7 +3,7 @@ import { MessageSquare, Globe, Send, LucideFileQuestion, BookMarked, ShieldQuest
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm"; // Enables tables, lists, and more in Markdown
 
-export default function ChatUI() {
+export default function ChatUI({module_id}) {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -31,9 +31,9 @@ export default function ChatUI() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               branch: "CSE",
-              semester: "S8",
-              subject: "Distributed-Computing",
-              module: "module1",
+              semester: "S2",
+              subject: "Programming-in-C",
+              module: "Module_1",
               question: input,
             }),
           }

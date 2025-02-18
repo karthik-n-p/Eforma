@@ -4,8 +4,15 @@ import { Search, ChevronDown, ChevronUp, Check, Menu } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import moduleData from "../../../gemini_test/pdfs/ktu_modules.json";
 
-const Notes = () => {
-  const { moduleId, subtopicId } = useParams();
+const Notes = ({module_id1}) => {
+  if(module_id1){
+    var moduleId=module_id1
+  }
+  else{
+    var { moduleId, subtopicId } = useParams();
+
+  }
+  console.log("In notes",moduleId)
   const decodedSubtopicId = decodeURIComponent(subtopicId || "");
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedModule, setExpandedModule] = useState(null);
@@ -18,7 +25,7 @@ const Notes = () => {
 
   // Extract modules from JSON data
   const modules = moduleData[0].modules.map((module) => ({
-    id: module.module_name.toLowerCase().replace(/\s+/g, "-"),
+    id: module.module_name.toLowerCase().replace(/\s+/g, "_"),
     name: module.module_name,
     description: module.description,
     subtopics: module.subtopics.map((subtopic) => ({
@@ -46,6 +53,7 @@ const Notes = () => {
     .filter((module) => module.subtopics.length > 0 || module.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
   const selectedModule = modules.find((module) => module.id === moduleId);
+  console.log(selectedModule)
   const selectedSubtopic = selectedModule?.subtopics.find((subtopic) => subtopic.id === decodedSubtopicId);
 
   // Toggle module expansion
@@ -88,10 +96,31 @@ const Notes = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  if (!selectedModule) {
-    return <div className="flex-1 p-8 overflow-y-auto">Module not found.</div>;
+  if (module_id1) {
+    return (
+      <div className="p-6 flex flex-col h-screen bg-[#0D0F12] text-white overflow-auto">
+        {/* Notes without Sidebar */}
+        <div className="space-y-5">
+          {/* Module Header */}
+          <div className="bg-[#2C2F36] p-4 rounded-lg shadow-md">
+            <h1 className="text-2xl font-bold text-[#F9D74D]">{selectedModule.id.toUpperCase()}</h1>
+            <p className="mt-2 text-lg text-gray-400">{selectedModule.description}</p>
+          </div>
+  
+          {/* Subtopics */}
+          <div className="space-y-4">
+            {selectedModule.subtopics.map((subtopic, index) => (
+              <div key={index} className="bg-[#1F2226] p-4 rounded-lg shadow-lg">
+                <h2 className="text-xl font-semibold text-[#17BF51]">{subtopic.id.toUpperCase()}</h2>
+                <p className="mt-2 text-sm text-gray-300">{subtopic.content}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
   }
-
+  
   return (
     <div className="p-6 flex flex-col md:flex-row h-screen bg-[#0D0F12] text-white">
       {/* Mobile Toggle Button */}

@@ -24,7 +24,7 @@ function App() {
                 <Navbar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
                 <div
                   className={`flex-1 bg-[#0D0F12] transition-all duration-300 p-4 sm:pl-6 md:p-0 ${
-                    isCollapsed ? "w-full md:pl-0" : "md:pl-64"
+                    isCollapsed ? "w-full md:pl-16" : "md:pl-60"
                   } overflow-auto`}
                 >
                   <Routes>

@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Notebook, Bot, PlayCircle, LogOut } from "lucide-react";
 
-function Navbar() {
-  const [isCollapsed, setIsCollapsed] = useState(window.innerWidth < 768);
+function Navbar({isCollapsed,setIsCollapsed}) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -63,7 +61,7 @@ function Navbar() {
         <div className="h-[92vh] mt-2 flex flex-col justify-between">
           <div className="space-y-2">
             <NavItem to="/dashboard/chatbot" icon={Bot} label="FormaAi" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} />
-            <NavItem to="/dashboard/notes/module-1" icon={Notebook} label="Notes" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} />
+            <NavItem to="/dashboard/notes/module_1" icon={Notebook} label="Notes" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} />
             <NavItem to="/dashboard/videos" icon={PlayCircle} label="Videos" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} />
           </div>
 

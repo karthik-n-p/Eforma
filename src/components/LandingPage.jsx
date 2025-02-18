@@ -323,7 +323,7 @@ const LandingPage = () => {
       Join Us
     </Link>
     
-    <Link to='/dashboard/chatbot'
+    <Link to='login'
       className="border border-[#5570F1] text-[#5570F1] px-6 sm:px-10 py-2 sm:py-3 rounded-[100px] text-lg sm:text-xl font-bold hover:bg-[#5570F1] hover:text-white transition-all flex items-center space-x-2"
     >
       
