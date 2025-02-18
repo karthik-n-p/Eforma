@@ -67,12 +67,13 @@ function Navbar({isCollapsed,setIsCollapsed}) {
 
           {/* Log Out Button Positioned Higher */}
           <div className="pb-20 px-4">
-            <button
+            <Link
+            to='/'
               className={`w-full flex items-center space-x-2 bg-[#5570F1] text-white py-3 rounded-md hover:bg-[#4058D6] transition
               ${isCollapsed ? "justify-center p-3" : "justify-center"}`}
             >
               <LogOut size={24} />
-            </button>
+            </Link>
           </div>
         </div>
       </div>

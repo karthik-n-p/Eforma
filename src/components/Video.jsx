@@ -6,6 +6,8 @@ import Notes from "./Notes"; // Assuming Notes is a separate component
 import { motion } from "framer-motion"; // Import framer-motion
 
 export default function Videos() {
+  const storedUser = localStorage.getItem("user");
+console.log(storedUser)
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -54,7 +56,7 @@ export default function Videos() {
   // Show the dropdown only after user interaction
   const handleDropdownChange = (e) => {
     setSelectedModule(e.target.value);
-    handleSend(`You are a tutor for ${e.target.value}. Greet Karthik and ask for doubts.`);
+    handleSend(`You are a tutor for ${e.target.value}. Greet user and ask for doubts.`);
   };
 
   return (
