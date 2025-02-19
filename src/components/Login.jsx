@@ -53,7 +53,7 @@ const Login = () => {
         setTimeout(() => {
           setShowSuccess(false);
           if (isLogin) {
-            navigate("/dashboard/chatbot"); // Navigate to chatbot after login
+            navigate("/dashboard/formaAi"); // Navigate to chatbot after login
           }
         }, 2000); // Hide animation after 2 seconds
       } else {
