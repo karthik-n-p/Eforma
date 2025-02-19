@@ -31,7 +31,7 @@ function App() {
                     <Route path="chatbot" element={<Home />} />
                     <Route path="notes/:moduleId" element={<Notes />} />
                     <Route path="notes/:moduleId/:subtopicId" element={<Notes />} />
-                    <Route path="videos" element={<Video />} />
+                    <Route path="formaAi" element={<Video />} />
                   </Routes>
                 </div>
               </div>

@@ -194,7 +194,25 @@ const LandingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", semester: "", featureRequest: "" });
   const [submitted, setSubmitted] = useState(false);
+  
+  useEffect(() => {
+    const wakeServer = async () => {
+      try {
+        const response = await fetch("https://renovation-lji1.onrender.com/api/wake", {
+          method: "GET",
+        });
+        if (response.ok) {
+          console.log("Server woken up successfully!");
+        } else {
+          console.error("Failed to wake up the server.");
+        }
+      } catch (error) {
+        console.error("Error waking up the server:", error);
+      }
+    };
 
+    wakeServer();
+  }, []);
   const features = [
     { icon: <File size={40} className="text-primary" />, title: "No More PDFs", desc: "Well-organized documentation with easy accessibility." },
     { icon: <PlayCircle size={40} className="text-primary" />, title: "Learn What You Need", desc: "High-probability questions and targeted explanations." },

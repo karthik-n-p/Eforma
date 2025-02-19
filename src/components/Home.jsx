@@ -34,7 +34,7 @@ export default function ChatUI({module_id}) {
               semester: "S2",
               subject: "Programming-in-C",
               module: "Module_1",
-              question: input,
+              question: input+ "If its a greeting only wish back",
             }),
           }
         );

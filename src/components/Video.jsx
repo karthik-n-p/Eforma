@@ -15,11 +15,18 @@ console.log(storedUser)
   const [isLoading, setIsLoading] = useState(false);
   const [selectedModule, setSelectedModule] = useState(null);
 
-  const handleSend = async (customQuestion = null) => {
+  const handleSend = async (customQuestion = null, skipUserMessage = false) => {
     setIsTyping(false);
     setHasInteracted(true);
+  
+    // Add the user's message to the messages state only if skipUserMessage is false
+    const userMessage = customQuestion || input;
+    if (!skipUserMessage) {
+      setMessages((prev) => [...prev, { role: "user", text: userMessage }]);
+    }
+  
     setIsLoading(true);
-
+  
     try {
       const response = await fetch(
         "https://renovation-ktu-node-server.onrender.com/api/v1/chat/ask",
@@ -31,11 +38,11 @@ console.log(storedUser)
             semester: "S2",
             subject: "Programming-in-C",
             module: selectedModule || "Module_1",
-            question: customQuestion || input + ` Add a follow-up question to keep the conversation going`,
+            question: userMessage,
           }),
         }
       );
-
+  
       const data = await response.json();
       if (data.response) {
         setMessages((prev) => [...prev, { role: "assistant", text: data.response }]);
@@ -45,23 +52,24 @@ console.log(storedUser)
       setMessages((prev) => [...prev, { role: "assistant", text: "Failed to fetch response. Please try again." }]);
     } finally {
       setIsLoading(false);
+      setInput(""); // Clear the input field after sending the message
     }
   };
 
   const handleModuleSelect = (module) => {
     setSelectedModule(module);
-    handleSend(`You are a tutor for ${module}. Greet user and ask for doubts.`);
+    handleSend(`You are a tutor for ${module}. Greet user and ask for doubts.`,true);
   };
 
   // Show the dropdown only after user interaction
   const handleDropdownChange = (e) => {
     setSelectedModule(e.target.value);
-    handleSend(`You are a tutor for ${e.target.value}. Greet user and ask for doubts.`);
+    handleSend(`You are a tutor for ${module}. Greet user and ask for doubts.`, true);
   };
 
   return (
     <div className={`flex flex-col-reverse sm:flex-row items-center h-screen bg-black text-white p-4 transition-all duration-300 ${selectedModule ? "justify-between" : "justify-center"}`}>
-      <div className={`flex flex-col ${selectedModule ? "lg:w-1/2" : "w-[90%] sm:w-[400px]"} h-auto bg-gray-900 rounded-xl p-6 shadow-xl transition-all duration-300`}>
+      <div className={`flex flex-col ${selectedModule ? "lg:w-1/2" : "w-[90%] sm:w-[400px]"} h-auto  rounded-xl p-6 shadow-xl transition-all duration-300`}>
         {!hasInteracted && !isTyping && (
           <>
             <h2 className="text-xl font-semibold text-center mb-2 text-[#5570F1]">
@@ -118,10 +126,15 @@ console.log(storedUser)
         )}
 
 {hasInteracted && (
-          <div className="flex-1 overflow-y-auto space-y-3 p-2 mb-4 max-h-[30vh]">
+          <div className="flex-1 overflow-y-auto space-y-3 p-2 mb-4 max-h-[40vh]">
       
-            {messages.map((msg, index) => (
-              <div key={index} className={`p-2 rounded-lg text-sm w-fit max-w-[80%] ${msg.role === "user" ? "bg-[#5570F1] ml-auto" : "bg-gray-700 mr-auto"}`}>
+      {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={`p-2 rounded-lg text-sm w-fit max-w-[80%] ${
+                  msg.role === "user" ? "bg-[#5570F1] ml-auto" : "bg-gray-700 mr-auto"
+                }`}
+              >
                 {msg.role === "assistant" ? (
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.text}</ReactMarkdown>
                 ) : (

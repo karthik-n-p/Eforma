@@ -60,9 +60,10 @@ function Navbar({isCollapsed,setIsCollapsed}) {
         {/* Sidebar Content */}
         <div className="h-[92vh] mt-2 flex flex-col justify-between">
           <div className="space-y-2">
-            <NavItem to="/dashboard/chatbot" icon={Bot} label="FormaAi" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} />
+            {/* <NavItem to="/dashboard/chatbot" icon={Bot} label="FormaAi" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} /> */}
+            <NavItem to="/dashboard/formaAi" icon={Bot}  label="FormaAi" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} />
             <NavItem to="/dashboard/notes/module_1" icon={Notebook} label="Notes" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} />
-            <NavItem to="/dashboard/videos" icon={PlayCircle} label="Dynamo" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} />
+
           </div>
 
           {/* Log Out Button Positioned Higher */}
