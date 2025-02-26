@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useParams, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Notes from "./components/Notes";
@@ -7,10 +7,15 @@ import Video from "./components/Video";
 import LandingPage from "./components/LandingPage";
 import Login from "./components/Login";
 import "./App.css";
+import { useEffect } from "react";
 
 function App() {
+  const { chatid: paramChatId } = useParams(); // Get chatid from URL
+
+  const [chatid, setChatId] = useState(paramChatId); // Store chat ID in state
   const [isCollapsed, setIsCollapsed] = useState(false);
 
+  
   return (
     <Router>
       <Routes>
@@ -28,7 +33,7 @@ function App() {
                   } overflow-auto`}
                 >
                   <Routes>
-                    <Route path="chatbot" element={<Home />} />
+                    <Route path="chat/:chatid" element={<Home />} />
                     <Route path="notes/:moduleId" element={<Notes />} />
                     <Route path="notes/:moduleId/:subtopicId" element={<Notes />} />
                     <Route path="formaAi" element={<Video />} />
