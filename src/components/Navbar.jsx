@@ -10,7 +10,7 @@ function Navbar({ isCollapsed, setIsCollapsed }) {
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
   const location = useLocation();
-  console.log("userid inside nav",userId")
+  console.log("userid inside nav",userId)
   // Extract chatid from the URL path
   const pathSegments = location.pathname.split("/"); // Split the URL path into segments
   const currentChatId = pathSegments[pathSegments.length - 1]; // Get the last segment
