@@ -1,0 +1,30 @@
+:root {
+    /* Primary Colors */
+    --primary: #5570F1; /* Main brand color */
+    --primary-hover: #4059C7; /* Darker shade for hover states */
+    --primary-light: rgba(85, 112, 241, 0.1); /* Light background for accents */
+  
+    /* Secondary Colors */
+    --secondary: #4ADE80; /* Success or accent color */
+    --secondary-hover: #3ABD6D; /* Darker shade for hover states */
+  
+    /* Background Colors */
+    --bg-dark: #0D0F12; /* Dark background for sections */
+    --bg-darker: #1A1D21; /* Slightly lighter dark background */
+    --bg-light: #2D2F33; /* Light background for cards or modals */
+  
+    /* Text Colors */
+    --text-primary: #FFFFFF; /* White for primary text */
+    --text-secondary: #A0AEC0; /* Gray for secondary text */
+    --text-accent: #5570F1; /* Accent text color */
+  
+    /* Utility Colors */
+    --success: #4ADE80; /* Success messages */
+    --error: #F56565; /* Error messages */
+    --warning: #F6E05E; /* Warning messages */
+    --info: #4299E1; /* Informational messages */
+  
+    /* Borders */
+    --border-primary: #2D3748; /* Default border color */
+    --border-secondary: #4A5568; /* Secondary border color */
+  }

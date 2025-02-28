@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useParams, useNavigate } from "react-router-dom";
 
-export default function ChatUI({ module_id }) {
+export default function ChatUI({ module_id, isCollapsed }) {
   const { chatid: paramChatId } = useParams(); // Get chatid from URL
   const navigate = useNavigate();
   const [chatid, setChatId] = useState(paramChatId); // Store chat ID in state
@@ -15,28 +15,35 @@ export default function ChatUI({ module_id }) {
   const [hasInteracted, setHasInteracted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [chatData, setChatData] = useState(null);
+  const [tempMessage, setTempMessage] = useState(null); // Temporary storage for the user's message
 
   // Fetch chat data when chatid changes
- useEffect(() => {
-  if (paramChatId) {
-    setChatId(paramChatId); // Ensure state updates with new chat ID
-    setChatData(null)
-    setHasInteracted(false)
-   
-
-  }
-}, [paramChatId]); 
-
+  useEffect(() => {
+    if (paramChatId && paramChatId !== ":chatid") {
+      setChatId(paramChatId); // Update chatid in state
+      fetchChatData(paramChatId); // Fetch chat data for the new chatid
+    } else if (paramChatId === ":chatid") {
+      // Reset state for a new chat session
+      setHasInteracted(false);
+      setIsTyping(false);
+      setMessages([]); // Clear messages for a new chat
+    }
+  }, [paramChatId]);
 
   // Fetch chat data from the API
   const fetchChatData = async (chatId) => {
-    if (!chatId || chatId === chatid) return;
     try {
-      const response = await fetch(`https://renovation-ktu-node-server.onrender.com/api/v1/chat/${chatId}`);
+      const response = await fetch(`https://renovation-ktu-node-server.onrender.com/api/v1/chat/history/${userid}/${chatId}`);
       const data = await response.json();
       if (data.success) {
-        setChatData(data.chat);
-        setMessages(data.chat.messages || []);
+        setChatData(data.history);
+        setMessages(data.history || []); // Set messages from the fetched chat data
+
+        // Add the temporary message back to the messages array after navigation
+        if (tempMessage) {
+          setMessages((prev) => [...prev, tempMessage]);
+          setTempMessage(null); // Clear the temporary message
+        }
       } else {
         console.error("Failed to fetch chat data");
       }
@@ -44,7 +51,6 @@ export default function ChatUI({ module_id }) {
       console.error("Error fetching chat data:", error);
     }
   };
-  
 
   // Start a new chat
   const startNewChat = async () => {
@@ -69,26 +75,28 @@ export default function ChatUI({ module_id }) {
   const handleSend = async () => {
     if (!input.trim()) return;
 
-    setMessages([...messages, { role: "user", text: input }]);
+    const userMessage = { role: "user", text: input }; // Store the user's message
+    setMessages((prev) => [...prev, userMessage]); // Add the user's message to the state
     setInput("");
     setIsTyping(false);
     setHasInteracted(true);
     setIsLoading(true);
 
-    let activeChatId = chatid;
+    let activeChatId = paramChatId;
 
     // If no chat exists, start a new chat
-    if (chatid === ":chatid" || !chatid) {
+    if (paramChatId === ":chatid") {
       activeChatId = await startNewChat();
       if (!activeChatId) {
         setMessages((prev) => [...prev, { role: "assistant", text: "Failed to start a new chat. Try again later." }]);
         setIsLoading(false);
         return;
       }
-      setChatId(activeChatId);
-      navigate(`/dashboard/chat/${activeChatId}`);
+      setChatId(activeChatId); // Update the chat ID in state
+      setTempMessage(userMessage); // Store the user's message temporarily
+      navigate(`/dashboard/chat/${activeChatId}`); // Navigate to the new chat
+      return; // Stop further execution until navigation completes
     }
-    
 
     // Send the message to the API
     try {
@@ -102,7 +110,7 @@ export default function ChatUI({ module_id }) {
           semester: "S2",
           subject: "Programming-in-C",
           module: "Module_1",
-          question: input + " If it's a greeting, only wish back.",
+          question: input,
         }),
       });
 
@@ -127,11 +135,11 @@ export default function ChatUI({ module_id }) {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-black text-white p-4">
+    <div className={`flex justify-center items-center h-screen ${isCollapsed ? "bg-gray-900" : "bg-black"} text-white p-4`}>
       <div
-        className={`flex flex-col ${hasInteracted || isTyping ? "w-full h-full" : "w-[400px] h-auto bg-gray-900"} rounded-xl p-6 shadow-xl transition-all duration-300`}
+        className={`flex flex-col ${hasInteracted || isTyping || messages.length > 0 ? "w-full h-full" : "w-[400px] h-auto bg-gray-900"} rounded-xl p-6 shadow-xl transition-all duration-300`}
       >
-        {!hasInteracted && !isTyping && (
+        {!hasInteracted && !isTyping && messages.length === 0 && (
           <>
             <h2 className="text-xl font-semibold text-center mb-2 text-[#5570F1]">
               How can I help you today?
@@ -148,7 +156,7 @@ export default function ChatUI({ module_id }) {
           </>
         )}
 
-        {hasInteracted && (
+        {(hasInteracted || messages.length > 0) && (
           <div className="flex-1 overflow-y-auto space-y-3 p-2 mb-4">
             {messages.map((msg, index) => (
               <div

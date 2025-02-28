@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation} from "react-router-dom";
 import { ChevronLeft, ChevronRight, LogOut, MessageSquare, Plus, NotebookIcon, Edit } from "lucide-react";
 
 function Navbar({ isCollapsed, setIsCollapsed }) {
@@ -8,24 +8,20 @@ function Navbar({ isCollapsed, setIsCollapsed }) {
   const [editingChatId, setEditingChatId] = useState(null);
   const [newTitle, setNewTitle] = useState("");
   const userId = localStorage.getItem("userId");
-  console.log(userId)
   const navigate = useNavigate();
+  const location = useLocation();
+ 
+  // Extract chatid from the URL path
+  const pathSegments = location.pathname.split("/"); // Split the URL path into segments
+  const currentChatId = pathSegments[pathSegments.length - 1]; // Get the last segment
+  console.log("Current Chat ID:", currentChatId); // Debugging
 
+  // Fetch previous chats
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setIsCollapsed(true);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (userId) {
+    if (currentChatId) {
       fetchPreviousChats();
     }
-  }, [userId]);
+  }, [currentChatId]);
 
   const fetchPreviousChats = async () => {
     try {
@@ -40,11 +36,7 @@ function Navbar({ isCollapsed, setIsCollapsed }) {
   };
 
   const handleNewChat = async () => {
-    
-        // Navigate after state update
-        navigate(`/dashboard/chat/:chatid`);
-  
-     
+    navigate(`/dashboard/chat/:chatid`);
   };
 
   const toggleCollapse = () => {
@@ -81,44 +73,44 @@ function Navbar({ isCollapsed, setIsCollapsed }) {
   return (
     <>
       <button
-        className="fixed top-4 left-4 z-50 p-2 bg-[#5570F1] text-white rounded-md md:hidden"
+        className="fixed top-4 left-4 z-50 p-2 bg-[var(--primary)] text-[var(--text-primary)] rounded-md md:hidden"
         onClick={() => setIsMobileOpen(!isMobileOpen)}
       >
         {isMobileOpen ? <ChevronLeft size={24} /> : <ChevronRight size={24} />}
       </button>
 
       <div
-        className={`fixed top-0 left-0 h-full bg-[#1F1F1F] shadow-lg transition-all duration-300 z-40
+        className={`fixed top-0 left-0 h-full bg-[var(--bg-darker)] shadow-lg transition-all duration-300 z-40
           ${isMobileOpen ? "w-64 translate-x-0" : isCollapsed ? "w-16 md:w-16" : "w-64"} 
           ${isMobileOpen ? "md:translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
-        <div className="flex items-center py-4 px-4 bg-[#1F1F1F] text-white shadow-md">
+        <div className="flex items-center py-4 px-4 bg-[var(--bg-darker)] text-[var(--text-primary)] shadow-md">
           <div className="flex items-center space-x-2">
-            <div className="bg-[#5570F1] rounded-lg w-10 h-10 flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-2xl">E</span>
+            <div className="bg-[var(--primary)] rounded-lg w-10 h-10 flex items-center justify-center shadow-lg">
+              <span className="text-[var(--text-primary)] font-bold text-2xl">E</span>
             </div>
             {!isCollapsed || isMobileOpen ? (
               <h1 className="text-lg font-bold">
-                <span className="text-[#5570F1]">Ed</span>Forma
+                <span className="text-[var(--primary)]">Ed</span>Forma
               </h1>
             ) : null}
           </div>
-          <button className="p-2 rounded-md hover:bg-gray-700 transition hidden md:block" onClick={toggleCollapse}>
+          <button className="p-2 rounded-md hover:bg-[var(--bg-light)] transition hidden md:block" onClick={toggleCollapse}>
             {isCollapsed ? <ChevronRight size={22} /> : <ChevronLeft size={22} />}
           </button>
         </div>
 
         <div className="h-[92vh] mt-2 flex flex-col justify-between">
           <div className="space-y-2 px-2">
-            <NavItem to="/dashboard/notes/module_1" icon={NotebookIcon} label="Notes" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} />
+            <NavItem to="/dashboard/notes/module-1" icon={NotebookIcon} label="Notes" isCollapsed={isCollapsed} isMobileOpen={isMobileOpen} />
 
             <button
               onClick={handleNewChat}
-              className={`w-full flex items-center space-x-3 py-3 px-2 text-gray-300 rounded-xl hover:bg-[#5570F1] transition
+              className={`w-full flex items-center space-x-3 py-3 px-2 text-[var(--text-secondary)] rounded-xl hover:bg-[var(--primary)] transition
                 ${isCollapsed && !isMobileOpen ? "justify-center" : "pl-4"}`}
             >
-              <div className="p-2 bg-[#5570F1] bg-opacity-20 rounded-xl flex items-center justify-center">
-                <Plus size={22} className="text-white" />
+              <div className="p-2 bg-[var(--primary-light)] rounded-xl flex items-center justify-center">
+                <Plus size={22} className="text-[var(--text-primary)]" />
               </div>
               {!isCollapsed || isMobileOpen ? <span>New Chat</span> : null}
             </button>
@@ -126,7 +118,7 @@ function Navbar({ isCollapsed, setIsCollapsed }) {
             {/* Chat History */}
             {(!isCollapsed || isMobileOpen) && (
               <div className="overflow-y-auto max-h-[60vh] mt-2">
-                <div className="text-gray-500 text-sm px-4 py-2">FormAI</div>
+                <div className="text-[var(--text-secondary)] text-sm px-4 py-2">FormAI</div>
                 {previousChats.length > 0 ? (
                   <div className="space-y-2">
                     {previousChats.map((chat) => (
@@ -137,11 +129,11 @@ function Navbar({ isCollapsed, setIsCollapsed }) {
                               type="text"
                               value={newTitle}
                               onChange={(e) => setNewTitle(e.target.value)}
-                              className="w-full p-2 bg-gray-600 text-white rounded-md"
+                              className="w-full p-2 bg-[var(--bg-light)] text-[var(--text-primary)] rounded-md"
                             />
                             <button
                               onClick={() => handleUpdateTitle(chat.chatId)}
-                              className="p-2 bg-[#5570F1] text-white rounded-md"
+                              className="p-2 bg-[var(--primary)] text-[var(--text-primary)] rounded-md"
                             >
                               Save
                             </button>
@@ -152,12 +144,13 @@ function Navbar({ isCollapsed, setIsCollapsed }) {
                             label={chat.title}
                             isCollapsed={isCollapsed}
                             isMobileOpen={isMobileOpen}
+                            isActive={chat.chatId === currentChatId} // Pass isActive prop
                           />
                         )}
                         {!isCollapsed || isMobileOpen ? (
                           <button
                             onClick={() => handleEditTitle(chat.chatId, chat.title)}
-                            className="p-2 text-gray-300 hover:bg-gray-600 rounded-md"
+                            className="p-2 text-[var(--text-secondary)] hover:bg-[var(--bg-light)] rounded-md"
                           >
                             <Edit size={16} />
                           </button>
@@ -166,14 +159,14 @@ function Navbar({ isCollapsed, setIsCollapsed }) {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-gray-500 text-sm text-center mt-4">No chat history available</p>
+                  <p className="text-[var(--text-secondary)] text-sm text-center mt-4">No chat history available</p>
                 )}
               </div>
             )}
           </div>
 
           <div className="pb-20 px-4">
-            <Link to='/' className={`w-full flex items-center space-x-2 bg-[#5570F1] text-white py-3 rounded-md hover:bg-[#4058D6] transition
+            <Link to='/' className={`w-full flex items-center space-x-2 bg-[var(--primary)] text-[var(--text-primary)] py-3 rounded-md hover:bg-[var(--primary-hover)] transition
               ${isCollapsed ? "justify-center p-3" : "justify-center"}`}>
               <LogOut size={24} />
             </Link>
@@ -184,15 +177,16 @@ function Navbar({ isCollapsed, setIsCollapsed }) {
   );
 }
 
-const NavItem = ({ to, icon: Icon, label, isCollapsed, isMobileOpen }) => (
+const NavItem = ({ to, icon: Icon, label, isCollapsed, isMobileOpen, isActive }) => (
   <Link
     to={to}
-    className={`flex items-center space-x-3 py-3 px-2 text-gray-300 rounded-xl hover:bg-[#2D2D2D] transition
-      ${isCollapsed && !isMobileOpen ? "justify-center" : "pl-4"}`}
+    className={`flex items-center space-x-3 py-3 px-2 text-[var(--text-secondary)] rounded-xl hover:bg-[var(--bg-light)] transition
+      ${isCollapsed && !isMobileOpen ? "justify-center" : "pl-4"}
+      ${isActive ? "bg-[var(--primary)] text-[var(--text-primary)]" : ""}`} // Apply active style
   >
     {Icon && (
-      <div className="p-2 bg-[#5570F1] bg-opacity-20 rounded-xl flex items-center justify-center">
-        <Icon size={22} className="text-white" />
+      <div className="p-2 bg-[var(--primary-light)] rounded-xl flex items-center justify-center">
+        <Icon size={22} className="text-[var(--text-primary)]" />
       </div>
     )}
     {!isCollapsed || isMobileOpen ? <span className="truncate w-40">{label}</span> : null}
