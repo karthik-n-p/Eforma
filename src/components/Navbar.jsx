@@ -32,8 +32,10 @@ console.log(userId)
     try {
       const response = await fetch(`https://renovation-ktu-node-server.onrender.com/api/v1/chat/titles?userId=${userId}`);
       const data = await response.json();
+      console.log("chat history ",data)
       if (data.success) {
         setPreviousChats(data.chats);
+        
       }
     } catch (error) {
       console.error("Error fetching previous chats:", error);
