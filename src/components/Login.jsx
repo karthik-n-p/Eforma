@@ -2,13 +2,14 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { CheckCircle } from "lucide-react"; // For success animation
-
+import { jwtDecode } from "jwt-decode";
 const Login = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     semester: "",
-    featureRequest: ""
+    featureRequest: "",
+    password: "", // Added password field
   });
 
   const [isLogin, setIsLogin] = useState(true);
@@ -49,9 +50,18 @@ const Login = () => {
 
       if (response.ok) {
         console.log("Success:", result);
-        if (isLogin ) {
-          localStorage.setItem("userId", result.token); // Save user ID locally
-          console.log(localStorage.getItem('userId'))
+        if (isLogin && result.token) {
+          
+          const decodedToken = jwtDecode(result.token);
+          console.log("Decoded Token:", decodedToken);
+
+          
+          const userId = decodedToken.userId; 
+          console.log("User ID:", userId);
+
+    
+          localStorage.setItem("userId", userId);
+          console.log("Stored User ID:", localStorage.getItem("userId"));
         }
         setShowSuccess(true); // Show success animation
         setTimeout(() => {
@@ -165,8 +175,6 @@ const Login = () => {
                 required={isLogin}
               />
 
-
-              
               <button
                 type="submit"
                 className="w-full p-2 text-white bg-[#5570F1] rounded hover:bg-[#4054B2] transition-all duration-200 focus:outline-none"
