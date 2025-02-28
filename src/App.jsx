@@ -27,7 +27,7 @@ function App() {
               <div className="flex flex-1 flex-col md:flex-row">
                 <Navbar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
                 <div
-                  className={`flex-1 transition-all duration-300 p-4 sm:pl-6 md:p-0 ${
+                  className={`flex-1 transition-all duration-300  sm:pl-6 md:p-0 ${
                     isCollapsed ? "w-full md:pl-0" : "md:pl-64"
                   } overflow-auto`}
                 >
