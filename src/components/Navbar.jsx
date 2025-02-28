@@ -10,7 +10,11 @@ function Navbar({ isCollapsed, setIsCollapsed }) {
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
   const location = useLocation();
- 
+
+if (!userId) {
+  console.error("User ID is not available in localStorage");
+  // Handle the case where userId is missing (e.g., redirect to login)
+}
   // Extract chatid from the URL path
   const pathSegments = location.pathname.split("/"); // Split the URL path into segments
   const currentChatId = pathSegments[pathSegments.length - 1]; // Get the last segment
