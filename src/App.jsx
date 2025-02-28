@@ -23,7 +23,7 @@ function App() {
         <Route
           path="/dashboard/*"
           element={
-            <div className="App min-h-screen flex flex-col bg-[var(--bg-dark)]">
+            <div className="App min-screen flex flex-col bg-[var(--bg-dark)]">
               <div className="flex flex-1 flex-col md:flex-row">
                 <Navbar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
                 <div
