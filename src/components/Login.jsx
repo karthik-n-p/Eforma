@@ -49,7 +49,7 @@ const Login = () => {
 
       if (response.ok) {
         console.log("Success:", result);
-        if (isLogin && result.to) {
+        if (isLogin ) {
           localStorage.setItem("userId", result.token); // Save user ID locally
           console.log(localStorage.getItem('userId'))
         }
